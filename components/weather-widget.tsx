@@ -32,10 +32,13 @@ function WeatherWidget() {
     }
 
     try {
+      const newData = await fetch("https://localhost:3000/");
+      console.log(newData);
+
       const query = `http://api.weatherapi.com/v1/current.json?key=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&q=${location}`;
       const responce = await fetch(query);
       const fetchedData = await responce.json();
-      console.log(fetchedData);
+      // console.log(fetchedData);
       const weatherData: WeatherData = {
         temperature: fetchedData.current.temp_c,
         description: fetchedData.current.condition.text,
